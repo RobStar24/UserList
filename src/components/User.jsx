@@ -1,7 +1,20 @@
+import { useState } from "react"
+import ConfirmModal from "./ConfirmModal"
+
 const User = ({user, deleteUser, changeModalShowing, setIsUserToUpdate}) => {
+    const [showConfirmModal, setShowConfirmModal] = useState(false)
   
     const handleClickDelete = () => {
+        setShowConfirmModal(true)
+    }
+
+    const handleConfirmDelete = () => {
         deleteUser(user.id)
+        setShowConfirmModal(false)
+    }
+
+    const handleCancelDelete = () => {
+        setShowConfirmModal(false);
     }
 
     const handleClickUpdate = () => {
@@ -26,6 +39,12 @@ const User = ({user, deleteUser, changeModalShowing, setIsUserToUpdate}) => {
         <button onClick={handleClickDelete} className="bg-secondary px-1 rounded-sm text-white"><i className='bx bx-trash '></i></button>
         <button onClick={handleClickUpdate} className="border border-gray-400 text-gray-400 px-1 rounded-sm"><i className='bx bx-pencil'></i></button>
         </div>
+
+        <ConfirmModal
+        isOpen={showConfirmModal}
+        onClose={handleCancelDelete}
+        onConfirm={handleConfirmDelete}
+      />
 
     </article>
   )

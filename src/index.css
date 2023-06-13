@@ -6,3 +6,7 @@
 .btn-primary {
     @apply bg-primary text-white p-2
 }
+
+.btn-secondary {
+    @apply bg-secondary text-white p-2
+}
