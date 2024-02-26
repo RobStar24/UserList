@@ -5,7 +5,7 @@ import ModalForm from "./components/ModalForm";
 import axios from "axios";
 import UserList from "./components/UserList";
 
-const BASE_USL = "https://users-crud.academlo.tech";
+const BASE_USL = "https://api-crud-1.onrender.com";
 
 const DEFAULT_VALUES = {
   birthday: "",
@@ -55,18 +55,19 @@ function App() {
   const updateUser = (data, reset) => {
     const url = BASE_USL + `/users/${isUserToUpdate.id}/`;
 
-    axios.patch(url, data)
-    .then(() => { 
-      getAllUsers()
-      resetModalForm(reset)
-    })
-    .catch((err) => console.log(err));
-  }
+    axios
+      .patch(url, data)
+      .then(() => {
+        getAllUsers();
+        resetModalForm(reset);
+      })
+      .catch((err) => console.log(err));
+  };
 
   const resetModalForm = (reset) => {
     setIsModalShowing(false);
     reset(DEFAULT_VALUES);
-    setIsUserToUpdate(null)
+    setIsUserToUpdate(null);
   };
 
   useEffect(() => {
